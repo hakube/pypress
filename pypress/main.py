@@ -1,12 +1,15 @@
-from flask import Flask
-
+from flask import Flask, render_template, request, url_for
+import admin, auth
 
 app = Flask(__name__)
+app.register_blueprint(admin.admin_page)
+app.register_blueprint(auth.auth_page)
 
 
 @app.route('/')
 def index():
-    return 'Hello, World!'
+    x = url_for('admin.admin')
+    return f'Hello, World! {x}'
 
 
 
