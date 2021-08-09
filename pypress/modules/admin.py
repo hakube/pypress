@@ -1,8 +1,10 @@
 
 from flask import Blueprint, render_template
 
+from . import posts
 
 admin_page = Blueprint('admin', __name__, template_folder='templates', static_folder='static')
+admin_page.register_blueprint(posts.posts_page)
 
 
 
