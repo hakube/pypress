@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for
-import admin, auth
+from modules import admin, auth
 
 app = Flask(__name__)
 app.register_blueprint(admin.admin_page)

@@ -1,0 +1,44 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link {{ 'active' if active_page == 'admin' else '' }}" aria-current="page" href="{{ url_for('admin.admin')}}">
+            <span data-feather="home"></span>
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ 'active' if active_page == 'posts' else '' }}" href="{{ url_for('admin.admin_posts')}}">
+            <span data-feather="file"></span>
+            Posts
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ 'active' if active_page == 'pages' else '' }}" href="{{ url_for('admin.admin_pages')}}">
+            <span data-feather="file"></span>
+            Pages
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ 'active' if active_page == 'comments' else '' }}" href="{{ url_for('admin.admin_comments')}}">
+            <span data-feather="message-square"></span>
+            Comments
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ 'active' if active_page == 'users' else '' }}" href="{{ url_for('admin.admin_users')}}">
+            <span data-feather="users"></span>
+            Users
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ 'active' if active_page == 'settings' else '' }}" href="{{ url_for('admin.admin_settings')}}">
+            <span data-feather="settings"></span>
+            Settings
+          </a>
+        </li>
+      </ul>
+
+
+    </div>
+  </nav>
