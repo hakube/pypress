@@ -6,4 +6,4 @@ posts_page = Blueprint('posts', __name__, template_folder='templates', static_fo
 @posts_page.route('/admin/posts/compose')
 def post_compose():
 
-    return render_template('admin_ui.html', page='compose', title='New post', file='compose.html')
+    return render_template('admin_ui.html', page='compose', title='Create a new post', file='compose.html')

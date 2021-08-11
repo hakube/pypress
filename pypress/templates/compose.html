@@ -1,22 +1,81 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">{{ title }}</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+
+
+
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="#">
+                <span data-feather="save"></span>
+                Save
+            </a>
+            <a type="button" class="btn btn-sm btn-outline-secondary" href=#>
+                <span data-feather="paperclip"></span>
+                Save as draft
+            </a>
+
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="">
+                <span data-feather="send"></span>
+                Publish
+            </a>
+        </div>
 
     </div>
 
 
     
-    <div id="editor"></div>
+    <textarea name="editor1" id="editor1" rows="10" cols="80">
+        You can now start writing here. Powered by <a href="http://">CK Editor 4</a>
+    </textarea>
+
+
+    <form style="margin-top: 20px;">
+        <h6>Metadata & SEO</h6>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Permalink</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
+            <div id="emailHelp" class="form-text">This is how the URL will look like once you publish your post</div>
+          </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Title</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">Title of your post</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Meta Description</label>
+          <input type="text" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Slug</label>
+            <input type="text" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Tags</label>
+            <input type="text" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Category</label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Select a category</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">no-index</label>
+        </div>
+      </form>
+
 </main>
 
+<script src="https://cdn.ckeditor.com/4.16.1/full-all/ckeditor.js"></script>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-
-
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+    // instance, using default configuration.
+    CKEDITOR.replace( 'editor1' );
 </script>
+
+
