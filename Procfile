@@ -1,1 +1,1 @@
-web: gunicorn wsgi:pypress
+web: gunicorn wsgi:app
