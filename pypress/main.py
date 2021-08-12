@@ -10,7 +10,3 @@ app.register_blueprint(auth.auth_page)
 def index():
     x = url_for('admin.admin')
     return f'Hello, World! {x}'
-
-
-
-app.run('0.0.0.0', 8000, debug=True)
