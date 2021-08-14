@@ -49,7 +49,11 @@
     </button>
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="#">Sign out, user</a>
+        <a class="nav-link px-3" href="{{ url_for('users.logout')}}">Sign out, 
+          {% if current_user.is_authenticated and current_user.role == 'admin' %}
+              Hi {{ current_user.name }}
+          {% endif %}
+        </a>
       </div>
     </div>
   </header>

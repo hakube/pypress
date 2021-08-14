@@ -7,6 +7,11 @@ name = "pypi"
 flask = "*"
 colorama = "*"
 gunicorn = "*"
+peewee = "*"
+flask-login = "*"
+bcrypt = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
