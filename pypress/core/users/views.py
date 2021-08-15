@@ -6,9 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash, gen_s
 from pypress.models import User, db
 import time
 
-
-
-
 users = Blueprint('users', __name__, template_folder='templates')
 
 
@@ -23,12 +20,11 @@ def admin_register():
 def admin_register_next():
     if current_user.role not in ['admin'] and current_user.authenticate == False: redirect(url_for('index'))
     data = request.form
-    
+
     email = data['email']
     password = data['password']
     password_confirmation = data['passwordc']
     name = data['name']
-
 
     user = User.query.filter_by(email=email).first()
 
@@ -52,13 +48,13 @@ def admin_register_next():
                 "<strong>Error!</strong> Unable to process registration.")
             flash(message, 'danger')
 
-
     return render_template('admin_auth_signup.html')
+
 
 @users.get('/login')
 def login():
-
     return render_template('admin_auth.html')
+
 
 @users.post('/login')
 def login_next():
@@ -78,6 +74,7 @@ def login_next():
         return redirect(next or url_for('index'))
 
     return render_template('admin_auth.html')
+
 
 @users.get('/logout')
 def logout():

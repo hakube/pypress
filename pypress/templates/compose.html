@@ -5,58 +5,60 @@
 
 
 
-            <a type="button" class="btn btn-sm btn-outline-secondary" href="#">
-                <span data-feather="save"></span>
-                Save
-            </a>
+
             &nbsp;
             <a type="button" class="btn btn-sm btn-outline-secondary" href=#>
                 <span data-feather="paperclip"></span>
                 Save as draft
             </a>
             &nbsp;
-            <a type="button" class="btn btn-sm btn-outline-secondary" href="">
+            <buttontype="button" class="btn btn-sm btn-outline-secondary" onclick="document.querySelector('#post').submit()">
                 <span data-feather="send"></span>
                 Publish
-            </a>
+        </button>
         </div>
 
     </div>
 
-    <form style="margin-top: 20px;">
+    <form style="margin-top: 20px;", id='post' method="POST" action="">
     
-        <textarea name="editor1" id="editor1" rows="10" cols="80">
-            You can now start writing here. Powered by <a href="http://ckeditor.com">CK Editor 4</a>
+        <textarea name="editor1" id="editor1" rows="500" cols="80" name="content">
         </textarea>
 
 
     
         <h6 style="margin-top: 20px;">Metadata & SEO</h6>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Permalink</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
-            <div id="emailHelp" class="form-text">This is how the URL will look like once you publish your post</div>
+            <label for="permalink" class="form-label">Permalink</label>
+            <input type="text" class="form-control" id="permalink" aria-describedby="permalinkHelp" name="permalink" disabled>
+            <div id="permalinkHelp" class="form-text">This is how the URL will look like once you publish your post</div>
           </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Title</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">Title of your post</div>
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" aria-describedby="titleHelp" name="title">
+          <div id="titleHelp" class="form-text">Title of your post</div>
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Meta Description</label>
-          <input type="text" class="form-control" id="exampleInputPassword1">
+            <label for="meta_description" class="form-label">Meta Description</label>
+            <input type="text" class="form-control" id="meta_description" aria-describedby="metaHelp" name="meta_description">
+            <div id="metaHelp" class="form-text">This is what will show up on Google and other search engines</div>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Slug</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
+          <label for="slug" class="form-label">Slug</label>
+          <input type="text" class="form-control" id="slug" aria-describedby="slugHelp" name="slug">
+          <div id="slugHelp" class="form-text">Customize your URL slug</div>
         </div>
+
+
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Tags</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
+          <label for="tags" class="form-label">Tags</label>
+          <input type="text" class="form-control" id="tags" aria-describedby="tagsHelp" name="tags">
+          <div id="tagsHelp" class="form-text">Set a tag for your post (seperate multiple items with a commna).</div>
         </div>
+
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Category</label>
-            <select class="form-select" aria-label="Default select example">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" id="category", name="category" aria-label="Default select example">
                 <option selected>Select a category</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -64,8 +66,9 @@
               </select>
         </div>
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">no-index</label>
+          <input type="checkbox" class="form-check-input" id="noindex" name="noindex" aria-describedby="noindexHelp">
+          <label class="form-check-label" for="noindex">no-index</label>
+          <div id="noindexHelp" class="form-text">Exclude this post from search engine results</div>
         </div>
       </form>
 

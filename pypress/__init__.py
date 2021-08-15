@@ -5,34 +5,36 @@ from flask import Flask
 from .models import db, User
 from flask_login.login_manager import LoginManager
 from flask_login import login_required
-
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.secret_key = 'This is the secret'
 
-
 login_manager = LoginManager()
 
 login_manager.init_app(app)
+login_manager.session_protection = 'strong'
 login_manager.login_view = "users.login"
 
 db.init_app(app)
+migrate = Migrate(app, db, render_as_batch=True)
 
 with app.app_context():
     db.create_all()
 
 
-# fl kits
+# Initialize user loader
 
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(id)
 
 
-# blueprints
+# Initialize blueprints
 app.register_blueprint(users)
 app.register_blueprint(admin_blueprint)
+
 
 # routes
 @app.get('/')
