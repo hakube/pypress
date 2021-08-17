@@ -1,0 +1,6 @@
+{
+  "name": "PyPress Development version",
+  "description": "Development version of PyPress CMS",
+  "repository": "https://github.com/hakube/pypress",
+  "keywords": ["cms", "python"]
+}
