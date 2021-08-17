@@ -1,12 +1,10 @@
-
-
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">{{ title }}</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
 
-            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ url_for('admin.post_compose')}}">
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ url_for('admin.post_compose') }}">
                 <span data-feather="plus"></span>
                 Create new post
             </a>
@@ -19,39 +17,30 @@
     </div>
 
 
-    
     <table class="table">
         <thead>
-          <tr>
+        <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Status</th>
             <th scope="col">Author</th>
             <th scope="col"></th>
-          </tr>
+        </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>My First Post</td>
-            <td>Published</td>
-            <td>Jacob Hernandez</td>
-            <td><a href="">Edit</a>&nbsp; <a href="http://">View</a></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>My Second Post</td>
-            <td>Draft</td>
-            <td>Jacob Hernandez</td>
-            <td><a href="">Edit</a>&nbsp; <a href="http://">View</a></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>Private</td>
-            <td>Jacob Hernandez</td>
-            <td><a href="">Edit</a>&nbsp; <a href="http://">View</a></td>
-          </tr>
+
+        {% for p in post_data %}
+            <tr>
+                <td>{{ p['post_id'] }}</td>
+                <td>{{ p['title'] }}</td>
+                <td>{{ p['status'] }}</td>
+                <td>{{ p['author'] }}</td>
+                <td><a href="">Edit</a>&nbsp; <a href="http://">View</a></td>
+
+            </tr>
+            <p></p>
+        {% endfor %}
+
         </tbody>
-      </table>
+    </table>
 </main>

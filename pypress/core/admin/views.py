@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, url_for, redirect, Markup, abort, flash, request
+from flask import Blueprint, render_template, url_for, redirect, abort, flash, request
 from flask_login.utils import login_required, current_user
-
-from pypress.models import Post, User, db
 from sqlalchemy.exc import IntegrityError
+
+from pypress.models import Post, db, User
 
 admin_blueprint = Blueprint('admin', __name__, template_folder='templates', static_folder='static')
 
@@ -10,13 +10,31 @@ admin_blueprint = Blueprint('admin', __name__, template_folder='templates', stat
 @admin_blueprint.get('/admin')
 @login_required
 def admin():
+    if current_user.role not in ['admin']:
+        return abort(403)
     return render_template('admin_ui.html', page='admin', title='Dashboard', file='dashboard.html')
 
 
 @admin_blueprint.get('/admin/posts')
 @login_required
 def admin_posts():
-    return render_template('admin_ui.html', page='posts', title='Posts', file='posts.html')
+
+
+    posts = []
+    rowMap = dict()
+    session = db.session()
+
+    result = session.query(Post, User).join(User, Post.user_id==User.id).all()
+
+    for r in result:
+
+        post_data = {'post_id': r[0].id, 'title': r[0].title, 'author': r[1].name, 'status': r[0].status}
+        posts.append(post_data)
+
+    session.close()
+
+    print(posts)
+    return render_template('admin_ui.html', page='posts', title='Posts', file='posts.html', post_data=posts)
 
 
 @admin_blueprint.get('/admin/pages')
@@ -68,7 +86,7 @@ def post_compose_next():
         pass
 
     try:
-        post = Post(title, post_content, meta_description, slug, tags, category, no_index, current_user.id)
+        post = Post(title, post_content, meta_description, slug, tags, category, no_index, current_user.id, 'Published')
         print(post.id)
         db.session.add(post)
         db.session.commit()

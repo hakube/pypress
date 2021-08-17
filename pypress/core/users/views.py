@@ -25,6 +25,7 @@ def admin_register_next():
     password = data['password']
     password_confirmation = data['passwordc']
     name = data['name']
+    role = data['role']
 
     user = User.query.filter_by(email=email).first()
 
@@ -33,7 +34,7 @@ def admin_register_next():
         try:
             password = generate_password_hash(password)
 
-            new_user = User(email, name, password, 'admin', gen_salt(16), time.time())
+            new_user = User(email, name, password, role, gen_salt(16), time.time())
             new_user.authenticated = True
             db.session.add(new_user)
             db.session.commit()

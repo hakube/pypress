@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 
 class User(db.Model, UserMixin):
-    id = db.Column(db.String(255), primary_key=True, default=str(uuid.uuid4()))
+    id = db.Column(db.String(255), primary_key=True, default=lambda: uuid.uuid4().__str__())
     email = db.Column(db.String(255), unique=True, nullable=False)
     name = db.Column(db.String(255), unique=False, nullable=False)
     password = db.Column(db.String(255), unique=False, nullable=False)
@@ -41,9 +41,11 @@ class Post(db.Model):
     tags = db.Column(db.String(100), nullable=True)
     category = db.Column(db.String(100), nullable=True)
     no_index = db.Column(db.String(3), nullable=True, default='off')
+    status = db.Column(db.String(30), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
-    def __init__(self, title, content, meta_description, slug, tags, category, noindex, author):
+
+    def __init__(self, title, content, meta_description, slug, tags, category, noindex, author, status):
 
         self.title = title
         self.content = content
@@ -53,3 +55,4 @@ class Post(db.Model):
         self.category = category
         self.no_index = noindex
         self.user_id = author
+        self.status = status
