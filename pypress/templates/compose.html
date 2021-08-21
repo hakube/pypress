@@ -28,14 +28,14 @@
 
     
         <h6 style="margin-top: 20px;">Metadata & SEO</h6>
-        <div class="mb-3">
+{#        <div class="mb-3">
             <label for="permalink" class="form-label">Permalink</label>
             <input type="text" class="form-control" id="permalink" aria-describedby="permalinkHelp" name="permalink" disabled>
             <div id="permalinkHelp" class="form-text">This is how the URL will look like once you publish your post</div>
-          </div>
+        </div>#}
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" aria-describedby="titleHelp" name="title">
+          <input type="text" class="form-control" id="title" aria-describedby="titleHelp" name="title" oninput="fillSlugHook()">
           <div id="titleHelp" class="form-text">Title of your post</div>
         </div>
         <div class="mb-3">

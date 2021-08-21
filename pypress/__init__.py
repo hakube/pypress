@@ -1,6 +1,7 @@
 from flask.templating import render_template
 from .core.users.views import users
 from .core.admin.views import admin_blueprint
+from .core.frontend.views import frontend_blueprint
 from flask import Flask
 from .models import db, User
 from flask_login.login_manager import LoginManager
@@ -10,6 +11,7 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.secret_key = 'This is the secret'
+app.url_map.strict_slashes = False
 
 login_manager = LoginManager()
 
@@ -34,10 +36,4 @@ def load_user(id):
 # Initialize blueprints
 app.register_blueprint(users)
 app.register_blueprint(admin_blueprint)
-
-
-# routes
-@app.get('/')
-@login_required
-def index():
-    return render_template('index.html')
+app.register_blueprint(frontend_blueprint, url_prefix='')

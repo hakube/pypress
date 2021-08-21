@@ -9,13 +9,13 @@ import time
 users = Blueprint('users', __name__, template_folder='templates')
 
 
-@users.get('/admin/register')
+@users.get('/admin/register/')
 @login_required
 def admin_register():
     return render_template('admin_auth_signup.html')
 
 
-@users.post('/admin/register')
+@users.post('/admin/register/')
 @login_required
 def admin_register_next():
     if current_user.role not in ['admin'] and current_user.authenticate == False: redirect(url_for('index'))
@@ -52,12 +52,12 @@ def admin_register_next():
     return render_template('admin_auth_signup.html')
 
 
-@users.get('/login')
+@users.get('/login/')
 def login():
     return render_template('admin_auth.html')
 
 
-@users.post('/login')
+@users.post('/login/')
 def login_next():
     data = request.form
 
@@ -77,7 +77,7 @@ def login_next():
     return render_template('admin_auth.html')
 
 
-@users.get('/logout')
+@users.get('/logout/')
 def logout():
     logout_user()
     next = request.args.get('next')
